@@ -18,6 +18,7 @@ GEM
       reline (>= 0.4.2)
     json (2.15.0)
     language_server-protocol (3.17.0.5)
+    lefthook (1.13.4)
     lint_roller (1.1.0)
     parallel (1.27.0)
     parser (3.3.9.0)
@@ -93,6 +94,7 @@ DEPENDENCIES
   atomutil (~> 0.1.5)
   debug
   dotenv
+  lefthook (~> 1.13)
   rspec (~> 3.12)
   rubocop (~> 1.60)
   rubocop-rspec (~> 2.25)

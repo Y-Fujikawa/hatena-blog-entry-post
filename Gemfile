@@ -9,6 +9,7 @@ gem 'dotenv'
 
 group :development, :test do
   gem 'debug'
+  gem 'lefthook', '~> 1.13'
   gem 'rspec', '~> 3.12'
 end
 
