@@ -4,6 +4,11 @@ pre-commit:
     - name: rubocop
       glob: "*.rb"
       exclude:
-        - config/application.rb
-        - config/routes.rb
+        - spec/**
       run: bundle exec rubocop --force-exclusion {all_files}
+
+pre-push:
+  follow: true
+  commands:
+    backend-tests:
+      run: rspec

@@ -22,7 +22,7 @@ module HatenaBlog
       logger.info "Successfully created entry: #{entry_url}"
 
       entry_url
-    rescue => e
+    rescue StandardError => e
       logger.error "Failed to create entry: #{e.message}"
       raise PostError, "Failed to create entry: #{e.message}"
     end
@@ -54,7 +54,7 @@ module HatenaBlog
       )
 
       Atompub::Client.new(auth: auth)
-    rescue => e
+    rescue StandardError => e
       raise AuthenticationError, "Failed to create client: #{e.message}"
     end
   end
