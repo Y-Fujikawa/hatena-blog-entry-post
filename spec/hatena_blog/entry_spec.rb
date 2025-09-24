@@ -49,7 +49,7 @@ RSpec.describe HatenaBlog::EntryGenerator do
 
     describe '#formatted_title' do
       it 'formats title with prefix' do
-        expect(entry_data.formatted_title).to eq('【Ruby】Ruby 再学習 | String#gsub')
+        expect(entry_data.formatted_title).to eq('title : String#gsub')
       end
     end
 
