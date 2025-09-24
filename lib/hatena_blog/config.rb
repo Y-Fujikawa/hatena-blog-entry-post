@@ -20,6 +20,7 @@ module HatenaBlog
       "https://blog.hatena.ne.jp/#{username}/#{blog_domain}/atom/entry"
     end
 
+    # rubocop:disable Metrics/MethodLength
     private_class_method def self.validate_config(config)
       case config
       in { username: nil, ** }
@@ -34,5 +35,7 @@ module HatenaBlog
         raise ConfigurationError, 'Invalid configuration'
       end
     end
+
+    # rubocop:enable Metrics/MethodLength
   end
 end

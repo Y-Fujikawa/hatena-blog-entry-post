@@ -13,6 +13,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'lefthook', '~> 1.13'
   gem 'rubocop', '~> 1.60'
   gem 'rubocop-rspec', '~> 2.25'
 end

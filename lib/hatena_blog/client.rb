@@ -22,30 +22,26 @@ module HatenaBlog
       logger.info "Successfully created entry: #{entry_url}"
 
       entry_url
-    rescue => e
+    rescue StandardError => e
       logger.error "Failed to create entry: #{e.message}"
       raise PostError, "Failed to create entry: #{e.message}"
     end
 
     def create_entries(entries)
-      results = []
-
-      entries.each.with_index(1) do |entry, index|
-        logger.info "Processing entry #{index}/#{entries.size}"
-
-        begin
-          url = create_entry(entry)
-          results << { success: true, url: url, entry: entry }
-        rescue PostError => e
-          logger.error "Entry #{index} failed: #{e.message}"
-          results << { success: false, error: e.message, entry: entry }
-        end
-      end
-
-      results
+      entries.each_with_index(1).map { |entry, index| process_entry(entry, index, entries.size) }
     end
 
     private
+
+    def process_entry(entry, index, total)
+      logger.info "Processing entry #{index}/#{total}"
+
+      url = create_entry(entry)
+      { success: true, url: url, entry: entry }
+    rescue PostError => e
+      logger.error "Entry #{index} failed: #{e.message}"
+      { success: false, error: e.message, entry: entry }
+    end
 
     def build_client
       auth = Atompub::Auth::Wsse.new(
@@ -54,7 +50,7 @@ module HatenaBlog
       )
 
       Atompub::Client.new(auth: auth)
-    rescue => e
+    rescue StandardError => e
       raise AuthenticationError, "Failed to create client: #{e.message}"
     end
   end

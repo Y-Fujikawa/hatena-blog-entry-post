@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: rubocop
+      glob: "*.rb"
+      exclude:
+        - spec/**
+        - .rubocop.yml
+      run: bundle exec rubocop --force-exclusion {all_files}
+
+pre-push:
+  follow: true
+  commands:
+    backend-tests:
+      run: rspec
