@@ -5,6 +5,7 @@ pre-commit:
       glob: "*.rb"
       exclude:
         - spec/**
+        - .rubocop.yml
       run: bundle exec rubocop --force-exclusion {all_files}
 
 pre-push:

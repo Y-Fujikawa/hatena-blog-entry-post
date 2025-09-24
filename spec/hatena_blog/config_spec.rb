@@ -17,7 +17,7 @@ RSpec.describe HatenaBlog::Config do
     end
 
     after do
-      valid_env.keys.each { |key| ENV.delete(key) }
+      valid_env.each_key { |key| ENV.delete(key) }
       ENV.delete('DRAFT_MODE')
     end
 
