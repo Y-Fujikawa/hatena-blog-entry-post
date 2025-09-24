@@ -8,7 +8,7 @@ require_relative 'errors'
 module HatenaBlog
   EntryData = Data.define(:title, :doc_url) do
     def formatted_title
-      "【Ruby】Ruby 再学習 | #{title}"
+      "title : #{title}"
     end
 
     def content
