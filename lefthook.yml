@@ -1,12 +1,15 @@
 pre-commit:
   parallel: true
-  jobs:
-    - name: rubocop
-      glob: "*.rb"
+  commands:
+    # 変更があったRubyファイルに対してのみRuboCopを実行するコマンド
+    rubocop:
+      # 対象となるファイルの拡張子を指定（通常は.rbやRakefileなど）
+      glob: '*.{rb,rake,ru,gemspec}'
+      # {staged_files} プレースホルダーを使用して、ステージングされたファイルのみを渡す
       exclude:
         - spec/**
         - ./.rubocop.yml
-      run: bundle exec rubocop --force-exclusion {all_files}
+      run: bundle exec rubocop {staged_files} --force-exclusion {all_files}
 
 pre-push:
   follow: true
